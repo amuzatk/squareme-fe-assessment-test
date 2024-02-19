@@ -27,6 +27,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ items, onSelect,}) => {
           ))}
         </TabList>
         {/* {items.map((item, index) => (
+          // tbr
           <TabPanel key={index}>
             {item.content}
           </TabPanel>
