@@ -14,18 +14,18 @@ const DashboardCharts = () => {
   const [mobileSelectedData, setMobileSelectedData] = useState<string>('Weekly');
 
   const dispatch = useAppDispatch();
-  const { barChartData, transactionStatus, barChartDataStatus, error } = useSelector((state: RootState) => state.data);
+  const { barChartData, barChartDataStatus, error } = useSelector((state: RootState) => state.data);
 
   useEffect(() => {
-    dispatch(fetchTransactions());
+    // dispatch(fetchTransactions());
     dispatch(fetchBarChartData());
   }, [dispatch]);
 
-  if (transactionStatus === 'loading' || barChartDataStatus === 'loading') {
+  if (barChartDataStatus === 'loading') {
     return <div>Loading...</div>;
   }
 
-  if (transactionStatus === 'failed' || barChartDataStatus === 'failed') {
+  if (barChartDataStatus === 'failed') {
     return <div>Error: {error}</div>;
   }  
   
