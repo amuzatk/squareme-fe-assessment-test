@@ -11,18 +11,18 @@ import { useAppDispatch } from '../../store/hooks';
 const AnalyticsCard = () => {
 
   const dispatch = useAppDispatch();
-  const { transactions, transactionStatus, barChartDataStatus, error } = useSelector((state: RootState) => state.data);
+  const { transactions, transactionStatus, error } = useSelector((state: RootState) => state.data);
 
   useEffect(() => {
     dispatch(fetchTransactions());
-    dispatch(fetchBarChartData());
+    // dispatch(fetchBarChartData());
   }, [dispatch]);
 
-  if (transactionStatus === 'loading' || barChartDataStatus === 'loading') {
+  if (transactionStatus === 'loading' ) {
     return <div>Loading...</div>;
   }
 
-  if (transactionStatus === 'failed' || barChartDataStatus === 'failed') {
+  if (transactionStatus === 'failed') {
     return <div>Error: {error}</div>;
   }
 

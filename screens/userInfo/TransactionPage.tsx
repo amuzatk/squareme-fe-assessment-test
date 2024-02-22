@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../store/hooks';
 import TransactionCard from "./TransactionCard";
 import { Transaction } from "../../interfaces/user";
 
-const TransactionPage =() => {
+const TransactionPage = () => {
   const [filteredData, setFilteredData] = useState<Transaction[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -19,7 +19,7 @@ const TransactionPage =() => {
   const [selectAll, setSelectAll] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const { transactions, transactionStatus, barChartDataStatus, error } = useSelector((state: RootState) => state.data);
+  const { transactions, transactionStatus, error } = useSelector((state: RootState) => state.data);
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -27,11 +27,11 @@ const TransactionPage =() => {
     setIsLoading(false);
   }, [dispatch]);
 
-  if (transactionStatus === 'loading' || barChartDataStatus === 'loading') {
+  if (transactionStatus === 'loading') {
     return <div>Loading...</div>;
   }
 
-  if (transactionStatus === 'failed' || barChartDataStatus === 'failed') {
+  if (transactionStatus === 'failed') {
     return <div>Error: {error}</div>;
   }
 
